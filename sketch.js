@@ -10,13 +10,13 @@ var bg,spaceship;
 
 function preload(){
   
-  bg = loadImage("images/iss.png");
-  sleep = loadAnimation("images/sleep.png");
-  brush = loadAnimation("images/brush.png");
-  gym = loadAnimation("images/gym11.png","images/gym12.png");
-  eat = loadAnimation("images/eat1.png","images/eat2.png");
-  drink = loadAnimation("images/drink1.png","images/drink2.png");
-  move = loadAnimation("images/move.png","images/move1.png");
+  bg = loadImage("iss.png");
+  sleep = loadAnimation("sleep.png");
+  brush = loadAnimation("brush.png");
+  gym = loadAnimation("gym11.png","gym12.png");
+  eat = loadAnimation("eat1.png","eat2.png");
+  drink = loadAnimation("drink1.png","drink2.png");
+  move = loadAnimation("move.png","move1.png");
 
 }
 
