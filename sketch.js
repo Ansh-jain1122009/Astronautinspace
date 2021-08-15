@@ -1,102 +1,83 @@
+var bg,sleep, brush, gym, eat, bath, move;
 var astronaut;
-var sleep;
-var brush;
-var gym;
-var eat;
-var drink;
-var move;
-var bg,spaceship;
-
 
 function preload(){
-  
-  bg = loadImage("iss.png");
-  sleep = loadAnimation("sleep.png");
-  brush = loadAnimation("brush.png");
-  gym = loadAnimation("gym11.png","gym12.png");
-  eat = loadAnimation("eat1.png","eat2.png");
-  drink = loadAnimation("drink1.png","drink2.png");
-  move = loadAnimation("move.png","move1.png");
-
+  bg= loadImage("images/iss.png");
+  sleep = loadAnimation("images/sleep.png");
+  brush = loadAnimation("images/brush.png");
+  gym = loadAnimation("images/gym1.png","images/gym1.png","images/gym2.png","images/gym2.png");
+  eat = loadAnimation("images/eat1.png","images/eat1.png","images/eat1.png","images/eat2.png","images/eat2.png","images/eat2.png");
+  bath = loadAnimation("images/bath1.png","images/bath1.png","images/bath1.png","images/bath2.png","images/bath2.png","images/bath2.png");
+ move = loadAnimation("images/move1.png","images/move1.png","images/move2.png","images/move2.png");
 }
 
-
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 500);
 
-  spaceship = createSprite(200,200);
-  spaceship.addImage("background",bg);
+
+
+  astronaut = createSprite(300,230);
+  astronaut.addAnimation("sleeping", sleep);
+  astronaut.scale = 0.1;
   
-  astronaut = createSprite(200,200);
-  astronaut.addAnimation("sleeping",sleep);
-  astronaut.scale=0.1;
-  
-  textSize(10);
-  fill(255);
-  textSize("Instructions:",20,10);
-  textSize(10);
-  fill(255);
-  textSize("UP arrow = Brushing",30,30);
-  textSize(10);
-  fill(255);
-  textSize("Down arrow = Gymming",30,50);
-  textSize(10);
-  fill(255);
-  textSize("Left arrow = Eating",30,70);
-  textSize(10);
-  fill(255);
-  textSize("Right arrow = Drinking",30,90);
-  textSize(10);
-  fill(255);
-  textSize("m key = Moving",30,110);
 }
 
 function draw() {
-  background(220);
+  background(bg);
+  drawSprites();
 
- if(keyDown("UP_ARROW")){
- astronaut.addAnimation("brushing",brush);
- astronaut.changeAnimation("brushing");
- astronaut.y=350;
- astronaut.velocityX=0;
- astronaut.velocityY=0;
- }
+  textSize(20);
+  fill("white")
+  text("Instructions:",20, 35);
+  textSize(15);
+  text("Up Arrow = Brushing",20, 55);
+  text("Down Arrow = Gymming",20, 70);
+  text("Left Arrow = Eating",20, 85);
+  text("Right Arrow = Bathing",20, 100);
+  text("m key = Moving",20, 115);
 
- if(keyDown("RIGHT_ARROW")){
-  astronaut.addAnimation("drinking",drink);
-  astronaut.changeAnimation("drinking");
-  astronaut.x=50;
-  astronaut.velocityX=0;
-  astronaut.velocityY=0;
+  
+  edges=createEdgeSprites();
+  astronaut.bounceOff(edges);
+  
+  if(keyDown("UP_ARROW")){
+    astronaut.addAnimation("brushing", brush);
+    astronaut.changeAnimation("brushing");
+    astronaut.y = 350;
+    astronaut.velocityX = 0;
+    astronaut.velocityY = 0;
   }
-
- if(keyDown("DOWN_ARROW")){
-  astronaut.addAnimation("Gymming",gym);
-  astronaut.changeAnimation("gym");
-  astronaut.y=50;
-  astronaut.velocityX=0;
-  astronaut.velocityY=0;
+  
+  if(keyDown("DOWN_ARROW")){
+    astronaut.addAnimation("gymming", gym);
+    astronaut.changeAnimation("gymming");
+    astronaut.y = 350;
+    astronaut.velocityX = 0;
+    astronaut.velocityY = 0;
   }
-
+  
   if(keyDown("LEFT_ARROW")){
-  astronaut.addAnimation("Eating",eat);
-  astronaut.changeAnimation("eating");
-  astronaut.y=350;
-  astronaut.velocityX=0;
-  astronaut.velocityY=0;
+    astronaut.addAnimation("eating", eat);
+    astronaut.changeAnimation("eating");
+    astronaut.x = 150;
+    astronaut.y = 350;
+    astronaut.velocityX = 0.5;
+    astronaut.velocityY = 0.5;
+  }
+  
+  if(keyDown("RIGHT_ARROW")){
+    astronaut.addAnimation("bathing", bath);
+    astronaut.changeAnimation("bathing");
+    astronaut.x = 300;
+    astronaut.velocityX = 0;
+    astronaut.velocityY = 0;
   }
 
   if(keyDown("m")){
-  astronaut.addAnimation("moving",move);
-  astronaut.changeAnimation("moving");
-  astronaut.y=200;
-  astronaut.velocityX=2;
-  astronaut.velocityY=3;
-  }  
-  
-  createEdgeSprites();
-  
-  astronaut.bounceOff(edges);
+    astronaut.addAnimation("moving", move);
+    astronaut.changeAnimation("moving");
+    astronaut.velocityX = 1;
+    astronaut.velocityY = 1;
+  }
 
-  drawSprites();
 }
